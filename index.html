@@ -3,896 +3,550 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Химия: Кислоты · Соли · Упражнения</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<title>Органическая химия — Полный конспект</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #000;
-    --fg: #fff;
-    --accent-acid: #ff5a5a;
-    --accent-salt: #5ab4ff;
-    --accent-ex: #b0ff5a;
-    --dim: #555;
-    --card-bg: #0d0d0d;
-    --border: #222;
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --border: #e8e2d8;
+    --accent: #2d6a4f;
+    --accent-light: #d8f3dc;
+    --accent2: #b5451b;
+    --text: #1a1a1a;
+    --muted: #6b6560;
+    --code-bg: #f0ede7;
   }
-
+ 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
   body {
+    font-family: 'Source Sans 3', sans-serif;
     background: var(--bg);
-    color: var(--fg);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
-    line-height: 1.75;
-    padding: 3rem 1.5rem 5rem;
-    max-width: 900px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+ 
+  .page {
+    max-width: 860px;
     margin: 0 auto;
+    padding: 48px 32px 80px;
   }
-
-  /* NAV */
-  nav {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1.25rem;
+ 
+  /* Header */
+  header {
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 24px;
+    margin-bottom: 48px;
   }
-
-  nav a {
-    text-decoration: none;
-    font-family: 'Unbounded', sans-serif;
+ 
+  .subject-label {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.12em;
-    padding: 0.45rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: #aaa;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  nav a.acid:hover  { color: var(--accent-acid); border-color: var(--accent-acid); }
-  nav a.salt:hover  { color: var(--accent-salt); border-color: var(--accent-salt); }
-  nav a.ex:hover    { color: var(--accent-ex);   border-color: var(--accent-ex); }
-
-  /* CHAPTER HEADERS */
-  .chapter {
-    margin-bottom: 4rem;
-  }
-
-  .chapter-header {
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .chapter-tag {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .acid .chapter-tag  { color: var(--accent-acid); }
-  .salt .chapter-tag  { color: var(--accent-salt); }
-  .ex   .chapter-tag  { color: var(--accent-ex); }
-
-  .chapter-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    font-weight: 900;
-    line-height: 1.15;
-  }
-
-  .acid .chapter-title  { color: var(--accent-acid); }
-  .salt .chapter-title  { color: var(--accent-salt); }
-  .ex   .chapter-title  { color: var(--accent-ex); }
-
-  .chapter-sub {
-    color: #aaa;
-    margin-top: 0.75rem;
-    max-width: 680px;
-  }
-
-  /* SECTIONS */
-  section.block {
-    margin-bottom: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .block-header {
-    background: var(--card-bg);
-    border-bottom: 1px solid var(--border);
-    padding: 0.85rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .block-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 10px;
     letter-spacing: 0.15em;
-  }
-
-  .acid .block-num  { color: var(--accent-acid); }
-  .salt .block-num  { color: var(--accent-salt); }
-  .ex   .block-num  { color: var(--accent-ex); }
-
-  .block-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-  }
-
-  .block-body {
-    padding: 1.4rem 1.25rem;
-  }
-
-  /* LISTS */
-  ul, ol { padding-left: 1.4rem; }
-  li { margin-bottom: 0.55rem; color: #ddd; }
-  li li { color: #aaa; margin-top: 0.3rem; }
-  strong { color: #fff; }
-
-  /* PILLS */
-  .pill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 0.75rem;
-  }
-
-  .pill {
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.35rem 0.8rem;
-    font-size: 13px;
-    background: #111;
-    color: #ccc;
-  }
-
-  .pill.acid  { border-color: var(--accent-acid); color: var(--accent-acid); }
-  .pill.salt  { border-color: var(--accent-salt); color: var(--accent-salt); }
-  .pill.green { border-color: var(--accent-ex);   color: var(--accent-ex); }
-
-  /* INDICATOR GRID */
-  .ind-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-  }
-
-  .ind-card {
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.9rem 1rem;
-    background: #0a0a0a;
-  }
-
-  .ind-label { font-size: 12px; color: #777; margin-bottom: 0.3rem; }
-  .ind-value { font-size: 14px; font-weight: 700; }
-  .c-red   { color: #ff5a5a; }
-  .c-pink  { color: #ff70c8; }
-  .c-clear { color: #aaa; font-style: italic; }
-  .c-blue  { color: #60aaff; }
-  .c-marin { color: #ff70c8; }
-  .c-yell  { color: #f5e142; }
-
-  /* REACTION LIST */
-  .rx-list { list-style: none; padding: 0; }
-  .rx-list li {
-    border-bottom: 1px solid var(--border);
-    padding: 0.8rem 0;
-    color: #ccc;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-  .rx-list li:last-child { border-bottom: none; }
-  .rx-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 10px;
-    min-width: 22px;
-    margin-top: 3px;
-  }
-  .acid .rx-num { color: var(--accent-acid); }
-  .salt .rx-num { color: var(--accent-salt); }
-
-  /* WARNING */
-  .warn {
-    border: 1px solid #ff4444;
-    border-radius: 3px;
-    padding: 0.9rem 1.1rem;
-    background: #0f0000;
-    color: #ff9999;
-    margin-top: 0.9rem;
-    font-size: 14px;
-  }
-
-  /* NOTE */
-  .note {
-    border: 1px solid #333;
-    border-radius: 3px;
-    padding: 0.9rem 1.1rem;
-    background: #080808;
-    color: #888;
-    margin-top: 0.9rem;
-    font-size: 13px;
-  }
-
-  /* GENETIC CHAIN */
-  .chain {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 0.75rem 0;
-  }
-  .chain-item {
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.3rem 0.75rem;
-    font-size: 13px;
-    background: #0d0d0d;
-    color: #ccc;
-  }
-  .chain-arrow { color: var(--dim); font-size: 18px; }
-
-  /* EXERCISE STEPS */
-  .ex-step {
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-
-  .ex-step-header {
-    background: #0d0d0d;
-    border-bottom: 1px solid var(--border);
-    padding: 0.75rem 1.1rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-
-  .ex-step-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 10px;
-    color: var(--accent-ex);
-    min-width: 22px;
-    margin-top: 2px;
-  }
-
-  .ex-step-label { color: #ccc; font-size: 14px; }
-
-  .ex-step-body {
-    padding: 1rem 1.1rem;
-  }
-
-  .eq-box {
-    background: #080808;
-    border: 1px solid #1a1a1a;
-    border-radius: 3px;
-    padding: 0.75rem 1rem;
-    margin: 0.5rem 0;
-    color: #e0e0e0;
-  }
-
-  .exp-label {
-    font-size: 12px;
-    color: #666;
-    margin-top: 0.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .exp-text { color: #999; font-size: 13px; margin-top: 0.2rem; }
-
-  /* DIVIDER */
-  .chapter-divider {
-    border: none;
-    border-top: 1px solid #1a1a1a;
-    margin: 4rem 0;
-  }
-
-  /* FOOTER */
-  footer {
-    margin-top: 4rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1rem;
-    font-size: 11px;
-    color: var(--dim);
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+ 
+  header h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+  }
+ 
+  header p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-weight: 300;
+    font-size: 15px;
+  }
+ 
+  /* Sections */
+  section {
+    margin-bottom: 52px;
+  }
+ 
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+ 
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+ 
+  h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+  }
+ 
+  p { margin-bottom: 12px; }
+ 
+  ul, ol {
+    padding-left: 22px;
+    margin-bottom: 14px;
+  }
+ 
+  li { margin-bottom: 5px; }
+ 
+  /* Definition box */
+  .def {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 15px;
+  }
+ 
+  .def strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+ 
+  /* Formula / code */
+  .formula {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--code-bg);
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent2);
+  }
+ 
+  .formula-block {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--code-bg);
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid var(--border);
+  }
+ 
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+ 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+ 
+  thead {
+    background: var(--text);
+    color: #fff;
+  }
+ 
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.04em;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+ 
+  tbody tr:nth-child(even) { background: var(--code-bg); }
+  tbody tr:hover { background: var(--accent-light); transition: background 0.15s; }
+ 
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+  }
+ 
+  td:first-child {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+ 
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+ 
+  .steps li::before {
+    content: counter(step);
+    min-width: 28px;
+    height: 28px;
+    background: var(--text);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+ 
+  /* Position card */
+  .position-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    background: var(--surface);
+  }
+ 
+  .position-card .pos-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+ 
+  .position-card p { margin: 0; }
+ 
+  /* Two-column grid */
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+ 
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+ 
+  .card .card-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--accent2);
+  }
+ 
+  .card p, .card li { font-size: 14px; }
+ 
+  /* Highlight */
+  .highlight {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 15px;
+  }
+ 
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding-top: 20px;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+ 
+  @media (max-width: 600px) {
+    .page { padding: 28px 18px 60px; }
+    header h1 { font-size: 1.7rem; }
+    .grid2 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <a href="#acids" class="acid">🍋 Кислоты</a>
-  <a href="#salts" class="salt">🧂 Соли</a>
-  <a href="#exercises" class="ex">📝 Упражнения</a>
-  <a href="#bases" style="color:#aaa;border:1px solid #222;border-radius:3px;padding:0.45rem 1rem;text-decoration:none;font-family:'Unbounded',sans-serif;font-size:11px;letter-spacing:0.12em;" onmouseover="this.style.color='#c084fc';this.style.borderColor='#c084fc'" onmouseout="this.style.color='#aaa';this.style.borderColor='#222'">🧪 Основания</a>
-</nav>
-
-<!-- ══════════════════════════════════════════
-     CHAPTER 1: КИСЛОТЫ
-══════════════════════════════════════════ -->
-<div class="chapter acid" id="acids">
-  <div class="chapter-header">
-    <p class="chapter-tag">💥 Супер-шпаргалка · Глава 1</p>
-    <h1 class="chapter-title">КИСЛОТЫ</h1>
-    <p class="chapter-sub">Сложные вещества, состоящие из атомов водорода и кислотных остатков. При диссоциации образуют катионы \(H^+\) и анион кислотного остатка.</p>
-  </div>
-
-  <!-- 1. Физические свойства -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">01</span>
-      <span class="block-title">🌡️ Физические свойства</span>
+<div class="page">
+ 
+  <header>
+    <div class="subject-label">Конспект · Химия</div>
+    <h1>Органическая химия</h1>
+    <p>Полный курс — от основ до номенклатуры ИЮПАК</p>
+  </header>
+ 
+  <!-- 1 -->
+  <section>
+    <div class="section-num">§ 01</div>
+    <h2>Органические вещества</h2>
+    <p>Все вещества делятся на <strong>органические</strong> и <strong>неорганические</strong> (минеральные).</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Неорганические</div>
+        <p>Около <strong>0,5 млн</strong> веществ<br>Глина, песок, металлы и др.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Органические</div>
+        <p>Около <strong>27 млн</strong> веществ<br>Сахар, жиры, масла, полиэтилен, капрон и др.</p>
+      </div>
     </div>
-    <div class="block-body">
-      <ul>
-        <li><strong>Жидкие:</strong> \(HNO_3,\ H_2SO_4\)</li>
-        <li><strong>Твёрдые:</strong> \(H_3PO_4,\ H_3BO_3\)</li>
-        <li><strong>Растворы газов:</strong> \(HCl,\ H_2S\)</li>
-      </ul>
-      <div class="warn">
-        ⚠️ <strong>Нестабильные кислоты</strong> существуют только в растворах и разлагаются:<br>
-        \(H_2SO_3 \rightarrow H_2O + SO_2\)<br>
-        \(2HNO_2 \rightarrow H_2O + NO + NO_2\)
+    <div class="def">
+      <strong>Органическая химия</strong> — химия соединений углерода, кроме оксидов углерода, угольной кислоты и её солей.
+    </div>
+  </section>
+ 
+  <!-- 2 -->
+  <section>
+    <div class="section-num">§ 02</div>
+    <h2>Особенности органических веществ</h2>
+    <ul>
+      <li>Их значительно больше, чем неорганических</li>
+      <li>Имеют более сложное строение</li>
+      <li>Многие обладают огромной молекулярной массой (белки, углеводы, нуклеиновые кислоты)</li>
+      <li>При горении обычно образуются <span class="formula">CO₂</span> и <span class="formula">H₂O</span></li>
+    </ul>
+  </section>
+ 
+  <!-- 3 -->
+  <section>
+    <div class="section-num">§ 03</div>
+    <h2>Теория химического строения Бутлерова</h2>
+    <p>Для органической химии основополагающей является <strong>ТХС А.М. Бутлерова</strong> — так же, как для неорганической химии основой служит Периодический закон и таблица Менделеева.</p>
+ 
+    <h3>Положение 1 — Валентность и порядок соединения</h3>
+    <div class="position-card">
+      <div class="pos-label">Положение 1</div>
+      <p>Атомы в молекулах соединены в строгой последовательности согласно их валентностям. Порядок соединения атомов называется <strong>химическим строением</strong>.</p>
+    </div>
+    <ul>
+      <li>Углерод в органических соединениях всегда <strong>четырёхвалентен</strong></li>
+      <li>Валентности: <span class="formula">C(IV)</span>, <span class="formula">H(I)</span>, <span class="formula">O(II)</span>, <span class="formula">N(III)</span>, <span class="formula">S(II)</span>, <span class="formula">Cl(I)</span></li>
+    </ul>
+ 
+    <h3>Положение 2 — Изомерия</h3>
+    <div class="position-card">
+      <div class="pos-label">Положение 2</div>
+      <p>Свойства вещества зависят не только от состава молекулы, но и от <strong>порядка соединения атомов</strong> → следствием является изомерия.</p>
+    </div>
+    <div class="def">
+      <strong>Изомерия</strong> — явление существования разных веществ с одинаковым составом, но разным строением и свойствами.<br>
+      <strong>Изомеры</strong> — вещества с одинаковой молекулярной формулой, но разным строением.
+    </div>
+ 
+    <h3>Положение 3 — Взаимное влияние атомов</h3>
+    <div class="position-card">
+      <div class="pos-label">Положение 3</div>
+      <p>Атомы и группы атомов в молекуле <strong>взаимно влияют</strong> друг на друга, что определяет свойства вещества и его реакционную способность.</p>
+    </div>
+    <div class="highlight">
+      <strong>Вывод:</strong> свойства вещества определяются химическим, пространственным и электрическим строением.
+    </div>
+  </section>
+ 
+  <!-- 4 -->
+  <section>
+    <div class="section-num">§ 04</div>
+    <h2>Структурные формулы (пример — пропан C₃H₈)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Тип формулы</th><th>Описание / Вид</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Полная структурная</td><td>Все связи H и C показаны явно</td></tr>
+          <tr><td>Сокращённая структурная</td><td><span class="formula">CH₃—CH₂—CH₃</span></td></tr>
+          <tr><td>Молекулярная</td><td><span class="formula">C₃H₈</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+ 
+  <!-- 5 -->
+  <section>
+    <div class="section-num">§ 05</div>
+    <h2>Структурная изомерия</h2>
+    <p>Структурные изомеры отличаются <strong>порядком расположения атомов углерода</strong> в углеродной цепи.</p>
+    <p>Пример — <span class="formula">C₄H₁₀</span>:</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">н-Бутан</div>
+        <p>Прямая цепь<br>Т.кип. <strong>−0,5 °C</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-title">Изобутан</div>
+        <p>Разветвлённая цепь<br>Т.кип. <strong>−11,4 °C</strong></p>
       </div>
     </div>
   </section>
-
-  <!-- 2. Главные названия -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">02</span>
-      <span class="block-title">👑 Главные названия</span>
+ 
+  <!-- 6 -->
+  <section>
+    <div class="section-num">§ 06</div>
+    <h2>Классификация органических веществ</h2>
+    <p>Большинство органических соединений записывается формулой <span class="formula">R–X</span>, где <strong>R</strong> — углеводородный радикал, <strong>X</strong> — функциональная группа.</p>
+ 
+    <h3>По функциональным группам</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Класс</th><th>Формула</th></tr></thead>
+        <tbody>
+          <tr><td>Углеводороды</td><td><span class="formula">R–H</span></td></tr>
+          <tr><td>Галогенопроизводные</td><td><span class="formula">R–F(Cl, Br, I)</span></td></tr>
+          <tr><td>Спирты</td><td><span class="formula">R–OH</span></td></tr>
+          <tr><td>Альдегиды</td><td><span class="formula">R–C(=O)H</span></td></tr>
+          <tr><td>Кетоны</td><td><span class="formula">R–C(=O)–R₁</span></td></tr>
+          <tr><td>Карбоновые кислоты</td><td><span class="formula">R–C(=O)OH</span></td></tr>
+          <tr><td>Амины</td><td><span class="formula">R–NH₂</span></td></tr>
+          <tr><td>Сульфокислоты</td><td><span class="formula">R–SO₃H</span></td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="block-body">
-      <ul>
-        <li>\(HCl\) — Хлороводородная (соляная)</li>
-        <li>\(H_2S\) — Сероводородная</li>
-        <li>\(HBr\) — Бромоводородная</li>
-        <li>\(HNO_3\) — Азотная</li>
-        <li>\(H_2SO_4\) — Серная</li>
-        <li>\(H_3PO_4\) — Фосфорная</li>
-        <li>\(H_2CO_3\) — Угольная</li>
-        <li>\(H_2SiO_3\) — Кремниевая</li>
-      </ul>
+ 
+    <h3>По строению радикала R</h3>
+    <ul>
+      <li><strong>Ациклические (открытая цепь):</strong>
+        <ul>
+          <li>Предельные (насыщенные) → Алканы <span class="formula">CₙH₂ₙ₊₂</span></li>
+          <li>Непредельные: Алкены <span class="formula">CₙH₂ₙ</span>, Алкадиены <span class="formula">CₙH₂ₙ₋₂</span>, Алкины <span class="formula">CₙH₂ₙ₋₂</span></li>
+        </ul>
+      </li>
+      <li><strong>Циклические (замкнутая цепь):</strong>
+        <ul>
+          <li>Карбоциклические: алициклические, ароматические (π-электронная система)</li>
+          <li>Гетероциклические (содержат O, N, S помимо C)</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+ 
+  <!-- 7 -->
+  <section>
+    <div class="section-num">§ 07</div>
+    <h2>Алканы</h2>
+    <div class="def">
+      <strong>Алканы</strong> — предельные углеводороды, в молекулах которых все атомы связаны одинарными связями.<br>
+      Общая формула: <strong>CₙH₂ₙ₊₂</strong>
+    </div>
+ 
+    <h3>Строение метана CH₄</h3>
+    <ul>
+      <li>Тип гибридизации: <span class="formula">sp³</span></li>
+      <li>Атом C расположен в центре тетраэдра, атомы H — в вершинах</li>
+      <li>Валентные углы: <strong>109°28′</strong></li>
+    </ul>
+ 
+    <h3>Пространственное строение</h3>
+    <ul>
+      <li>Вокруг одинарной C–C связи возможно свободное вращение</li>
+      <li>Молекулы алканов могут принимать разнообразную форму в пространстве</li>
+    </ul>
+  </section>
+ 
+  <!-- 8 -->
+  <section>
+    <div class="section-num">§ 08</div>
+    <h2>Гомологи и гомологический ряд</h2>
+    <div class="def">
+      <strong>Гомологи</strong> — вещества со сходным строением и свойствами, отличающиеся на одну или несколько групп <span class="formula">–CH₂–</span><br>
+      <strong>Гомологический ряд</strong> — ряд веществ в порядке возрастания молекулярной массы, отличающихся на группу <span class="formula">CH₂</span>
+    </div>
+ 
+    <h3>Гомологический ряд алканов</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Название</th><th>Структурная формула</th><th>Мол. формула</th></tr></thead>
+        <tbody>
+          <tr><td>Метан</td><td><span class="formula">CH₄</span></td><td><span class="formula">CH₄</span></td></tr>
+          <tr><td>Этан</td><td><span class="formula">CH₃–CH₃</span></td><td><span class="formula">C₂H₆</span></td></tr>
+          <tr><td>Пропан</td><td><span class="formula">CH₃–CH₂–CH₃</span></td><td><span class="formula">C₃H₈</span></td></tr>
+          <tr><td>н-Бутан</td><td><span class="formula">CH₃–(CH₂)₂–CH₃</span></td><td><span class="formula">C₄H₁₀</span></td></tr>
+          <tr><td>н-Пентан</td><td><span class="formula">CH₃–(CH₂)₃–CH₃</span></td><td><span class="formula">C₅H₁₂</span></td></tr>
+          <tr><td>н-Гексан</td><td><span class="formula">CH₃–(CH₂)₄–CH₃</span></td><td><span class="formula">C₆H₁₄</span></td></tr>
+          <tr><td>н-Гептан</td><td><span class="formula">CH₃–(CH₂)₅–CH₃</span></td><td><span class="formula">C₇H₁₆</span></td></tr>
+          <tr><td>н-Октан</td><td><span class="formula">CH₃–(CH₂)₆–CH₃</span></td><td><span class="formula">C₈H₁₈</span></td></tr>
+          <tr><td>н-Нонан</td><td><span class="formula">CH₃–(CH₂)₇–CH₃</span></td><td><span class="formula">C₉H₂₀</span></td></tr>
+          <tr><td>н-Декан</td><td><span class="formula">CH₃–(CH₂)₈–CH₃</span></td><td><span class="formula">C₁₀H₂₂</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h3>Число изомеров алканов</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Формула</th><th>Число изомеров</th></tr></thead>
+        <tbody>
+          <tr><td><span class="formula">CH₄ – C₃H₈</span></td><td>1</td></tr>
+          <tr><td><span class="formula">C₄H₁₀</span></td><td>2</td></tr>
+          <tr><td><span class="formula">C₅H₁₂</span></td><td>3</td></tr>
+          <tr><td><span class="formula">C₆H₁₄</span></td><td>5</td></tr>
+          <tr><td><span class="formula">C₇H₁₆</span></td><td>9</td></tr>
+          <tr><td><span class="formula">C₈H₁₈</span></td><td>18</td></tr>
+          <tr><td><span class="formula">C₉H₂₀</span></td><td>35</td></tr>
+          <tr><td><span class="formula">C₁₀H₂₂</span></td><td>75</td></tr>
+          <tr><td><span class="formula">C₂₀H₄₂</span></td><td>366 319</td></tr>
+          <tr><td><span class="formula">C₄₀H₈₂</span></td><td>62 491 178 805 831</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
-
-  <!-- 3. Классификация -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">03</span>
-      <span class="block-title">🚦 Классификация</span>
+ 
+  <!-- 9 -->
+  <section>
+    <div class="section-num">§ 09</div>
+    <h2>Номенклатура ИЮПАК для алканов</h2>
+    <div class="def">
+      <strong>Номенклатура</strong> — система правил, дающая однозначное название каждому веществу по его строению.
     </div>
-    <div class="block-body">
-      <ul>
-        <li><strong>По наличию кислорода:</strong> Кислородные (\(H_2SO_4\)) и Бескислородные (\(HCl\))</li>
-        <li><strong>По основности:</strong> Одноосновные (\(HNO_3\)) и Многоосновные (\(H_3PO_4\))</li>
-        <li><strong>По растворимости:</strong> Растворимые (\(HCl\)) и Нерастворимые (\(H_2SiO_3\))</li>
-        <li><strong>По летучести:</strong> Летучие (\(H_2S\)) и Нелетучие (\(H_2SO_4\))</li>
-        <li><strong>По силе:</strong> Сильные (\(HNO_3\)) и Слабые (\(H_2SO_3\))</li>
-      </ul>
-    </div>
+ 
+    <h3>Правила составления названий</h3>
+    <ol class="steps">
+      <li><strong>Выделить самую длинную углеродную цепь.</strong> При нескольких цепях одинаковой длины — выбрать более разветвлённую.</li>
+      <li><strong>Определить ответвления</strong> (радикалы).</li>
+      <li><strong>Пронумеровать атомы C</strong> с того конца, к которому ближе ответвление. Если ответвления равноудалены — начинают с конца, где ответвлений больше.</li>
+      <li><strong>Указать номер и название радикала.</strong> При нескольких одинаковых используют: ди- (2), три- (3), тетра- (4).</li>
+      <li><strong>Назвать главную цепь</strong> как углеводород нормального строения.</li>
+    </ol>
+ 
+    <h3>Пример</h3>
+    <div class="formula-block">CH₃–CH–C–CH₂–CH₂–CH₃
+     |   |
+    CH₃ CH₃
+        |
+       CH₂–CH₃
+ 
+Нумерация: 1–2–3–4–5–6–7
+Название: 2,3-диметил-3-этилгептан</div>
   </section>
-
-  <!-- 4. Индикаторы -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">04</span>
-      <span class="block-title">🎨 Индикаторы (pH &lt; 7)</span>
-    </div>
-    <div class="block-body">
-      <div class="ind-grid">
-        <div class="ind-card">
-          <p class="ind-label">🔴 Лакмус</p>
-          <p class="ind-value c-red">КРАСНЫЙ</p>
-        </div>
-        <div class="ind-card">
-          <p class="ind-label">💖 Метилоранж</p>
-          <p class="ind-value c-pink">МАЛИНОВЫЙ</p>
-        </div>
-        <div class="ind-card">
-          <p class="ind-label">👻 Фенолфталеин</p>
-          <p class="ind-value c-clear">БЕСЦВЕТНЫЙ</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Химические свойства -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">05</span>
-      <span class="block-title">🥊 Химические свойства</span>
-    </div>
-    <div class="block-body">
-      <ul class="rx-list acid">
-        <li><span class="rx-num">01</span><span>+ <strong>Основание:</strong> → Соль + Вода<br>\(H_2SO_4 + 2NaOH = Na_2SO_4 + 2H_2O\)</span></li>
-        <li><span class="rx-num">02</span><span>+ <strong>Оксид металла:</strong> → Соль + Вода<br>\(2HCl + CuO = CuCl_2 + H_2O\)</span></li>
-        <li><span class="rx-num">03</span><span>+ <strong>Металл:</strong> → Водород + Соль<br>\(2HCl + Zn = ZnCl_2 + H_2\uparrow\)<br>
-          <span style="color:#777;font-size:13px;">Металл должен стоять ДО водорода в ряду напряжений. Железо окисляется до \(Fe^{2+}\).</span></span></li>
-        <li><span class="rx-num">04</span><span>+ <strong>Соль:</strong> → Новая кислота + Новая соль (газ, осадок или вода)<br>\(BaCl_2 + H_2SO_4 = BaSO_4\downarrow + 2HCl\)</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 6. Способы получения -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">06</span>
-      <span class="block-title">🏭 Способы получения</span>
-    </div>
-    <div class="block-body">
-      <ul>
-        <li>Кислотный оксид + Вода: \(SO_3 + H_2O \rightarrow H_2SO_4\)</li>
-        <li>Вытеснение летучей кислоты: \(NaCl + H_2SO_4 \rightarrow HCl + Na_2SO_4\)</li>
-        <li>Гидролиз галогенидов: \(PCl_5 + H_2O \rightarrow H_3PO_4 + HCl\)</li>
-        <li>Из простых веществ: \(H_2 + Cl_2 \rightarrow 2HCl\)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 7. Амфотерные гидроксиды -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">07</span>
-      <span class="block-title">🌟 Амфотерные гидроксиды</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#aaa;margin-bottom:0.75rem;">Проявляют и кислотные, и основные свойства в зависимости от условий.</p>
-      <ul>
-        <li>Гидроксид алюминия как основание: \(Al(OH)_3\)</li>
-        <li>Гидроксид алюминия как кислота: \(H_3AlO_3\)</li>
-        <li>+ Кислота: \(Zn(OH)_2 + 3HCl = ZnCl_2 + 3H_2O\)</li>
-        <li>+ Основание: \(Zn(OH)_2 + 2NaOH \rightarrow Na_2[Zn(OH)_4]\)</li>
-      </ul>
-      <div class="warn">⚠️ При избытке щёлочи (\(NaOH\) изб.) осадок растворяется и образуется комплексная соль.</div>
-    </div>
-  </section>
-
-  <!-- 8. Задание -->
-  <section class="block acid">
-    <div class="block-header">
-      <span class="block-num">08</span>
-      <span class="block-title">📝 Задание (Слайд 17)</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#aaa;margin-bottom:1rem;">Напишите формулы щелочей и кислот, соответствующих данным оксидам:</p>
-      <div class="pill-row">
-        <span class="pill">\(CaO \rightarrow\) ___</span>
-        <span class="pill">\(CO_2 \rightarrow\) ___</span>
-        <span class="pill">\(SO_2 \rightarrow\) ___</span>
-        <span class="pill">\(SiO_2 \rightarrow\) ___</span>
-        <span class="pill">\(P_2O_5 \rightarrow\) ___</span>
-        <span class="pill">\(N_2O_5 \rightarrow\) ___</span>
-        <span class="pill">\(SO_3 \rightarrow\) ___</span>
-        <span class="pill">\(BaO \rightarrow\) ___</span>
-      </div>
-    </div>
-  </section>
+ 
+  <footer>Органическая химия · Полный конспект</footer>
+ 
 </div>
-
-<hr class="chapter-divider">
-
-<!-- ══════════════════════════════════════════
-     CHAPTER 2: СОЛИ
-══════════════════════════════════════════ -->
-<div class="chapter salt" id="salts">
-  <div class="chapter-header">
-    <p class="chapter-tag">💥 Супер-шпаргалка · Глава 2</p>
-    <h1 class="chapter-title">СОЛИ</h1>
-    <p class="chapter-sub">СОЛЬ = Ион металла + Кислотный остаток. Образуются при замещении атомов водорода в кислоте ионами металлов.</p>
-  </div>
-
-  <!-- 1. Внешний вид -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">01</span>
-      <span class="block-title">🧬 Что такое соли?</span>
-    </div>
-    <div class="block-body">
-      <ul>
-        <li>В основном — <strong>белые кристаллические вещества</strong>.</li>
-        <li>Соли железа (Fe) — <strong>желто-коричневые</strong>.</li>
-        <li>Соли меди (Cu) — <strong>зеленовато-голубые</strong>.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 2. Номенклатура -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">02</span>
-      <span class="block-title">🏷️ Номенклатура</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#aaa;margin-bottom:0.75rem;"><strong>Формула:</strong> Название кислотного остатка + Название металла (в род. падеже)</p>
-      <ul>
-        <li>🚫 <strong>Бескислородные:</strong> суффикс <strong>-ИД</strong>
-          <ul>
-            <li>\(NaCl\) — хлорид натрия</li>
-            <li>\(Al_2S_3\) — сульфид алюминия</li>
-          </ul>
-        </li>
-        <li>🎈 <strong>Кислородсодержащие:</strong>
-          <ul>
-            <li>Высшая степень окисления: суффикс <strong>-АТ</strong> → \(Na_2SO_4\) — сульфат натрия</li>
-            <li>Низшая степень окисления: суффикс <strong>-ИТ</strong> → \(Na_2SO_3\) — сульфит натрия</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 3. Классификация -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">03</span>
-      <span class="block-title">🚦 Классификация</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#888;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;">А) По растворимости</p>
-      <ul>
-        <li>💧 <strong>Растворимые:</strong> \(NaCl\)</li>
-        <li>🐢 <strong>Малорастворимые:</strong> \(CaSO_4\)</li>
-        <li>🧱 <strong>Нерастворимые:</strong> \(CaCO_3\) (осадок)</li>
-      </ul>
-      <p style="color:#888;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin:1rem 0 0.5rem;">Б) По типам</p>
-      <ul>
-        <li>🟢 <strong>Нормальные:</strong> все H заменены на металл — \(NaCl,\ Na_2SO_4\)</li>
-        <li>🍋 <strong>Кислые:</strong> H замещён частично — \(NaHSO_4\)</li>
-        <li>🧼 <strong>Основные:</strong> OH замещён частично — \(MgOHCl\)</li>
-        <li>👯 <strong>Двойные:</strong> два разных катиона металла — \(KAl(SO_4)_2\)</li>
-        <li>🧩 <strong>Комплексные:</strong> сложный ион в скобках — \(Na_2[Zn(OH)_4]\)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 4. Химические свойства -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">04</span>
-      <span class="block-title">🥊 Химические свойства</span>
-    </div>
-    <div class="block-body">
-      <ul class="rx-list salt">
-        <li><span class="rx-num">01</span><span>⚔️ + <strong>Металл:</strong> Вытеснение менее активного<br>\(Fe + CuSO_4 = FeSO_4 + Cu\)<br><span style="color:#777;font-size:13px;">⚠️ Исключение: Li, Na, K, Ca, Ba — реагируют с водой!</span></span></li>
-        <li><span class="rx-num">02</span><span>🍋 + <strong>Кислота:</strong> → газ или осадок<br>\(Na_2CO_3 + 2HCl = 2NaCl + CO_2 + H_2O\)</span></li>
-        <li><span class="rx-num">03</span><span>🧼 + <strong>Щёлочь:</strong> → нерастворимое основание<br>\(AlCl_3 + 3KOH = Al(OH)_3\downarrow + 3KCl\)</span></li>
-        <li><span class="rx-num">04</span><span>🧂 + <strong>Соль:</strong> → нерастворимая соль<br>\(Na_2SO_4 + BaCl_2 = BaSO_4\downarrow + 2NaCl\)</span></li>
-        <li><span class="rx-num">05</span><span>🔥 <strong>Разложение</strong> при нагревании:<br>\(CaCO_3 = CaO + CO_2\)</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 5. Способы получения -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">05</span>
-      <span class="block-title">🏭 Способы получения</span>
-    </div>
-    <div class="block-body">
-      <ul>
-        <li>Металл + Неметалл: \(2Fe + 3Cl_2 = 2FeCl_3\)</li>
-        <li>Кислотный оксид + Основный оксид: \(CaO + CO_2 = CaCO_3\)</li>
-        <li>Основание + Кислота: \(NaOH + HCl = NaCl + H_2O\)</li>
-        <li>Соль + Соль → новая нерастворимая соль</li>
-        <li>Соль + Более активный металл</li>
-        <li>Кислота + Металл (до \(H_2\) в ряду напряжений)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 6. Генетическая связь -->
-  <section class="block salt">
-    <div class="block-header">
-      <span class="block-num">06</span>
-      <span class="block-title">🧬 Генетическая связь</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#aaa;margin-bottom:1rem;">Связь между классами неорганических соединений — как из одного получить другое.</p>
-      <p style="color:#888;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">🛡️ Ряд металла</p>
-      <div class="chain">
-        <span class="chain-item">Металл</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Основный оксид</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Основание</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Соль</span>
-      </div>
-      <div class="note">\(Ca \rightarrow CaO \rightarrow Ca(OH)_2 \rightarrow CaCO_3\)</div>
-
-      <p style="color:#888;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin:1rem 0 0.5rem;">💨 Ряд неметалла</p>
-      <div class="chain">
-        <span class="chain-item">Неметалл</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Кислотный оксид</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Кислота</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">Соль</span>
-      </div>
-      <div class="note">\(C \rightarrow CO_2 \rightarrow H_2CO_3 \rightarrow CaCO_3\)</div>
-    </div>
-  </section>
-</div>
-
-<hr class="chapter-divider">
-
-<!-- ══════════════════════════════════════════
-     CHAPTER 3: УПРАЖНЕНИЯ
-══════════════════════════════════════════ -->
-<div class="chapter ex" id="exercises">
-  <div class="chapter-header">
-    <p class="chapter-tag">📝 Решённые задания · Глава 3</p>
-    <h1 class="chapter-title">УПРАЖНЕНИЯ</h1>
-    <p class="chapter-sub">Генетические цепочки превращений с уравнениями и объяснениями.</p>
-  </div>
-
-  <!-- Упражнение 1 -->
-  <section class="block ex">
-    <div class="block-header">
-      <span class="block-num">EX1</span>
-      <span class="block-title">Ряд углерода (Serie genética del carbono)</span>
-    </div>
-    <div class="block-body">
-      <div class="chain" style="margin-bottom:1.25rem;">
-        <span class="chain-item">\(C\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(CO_2\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(H_2CO_3\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(CaCO_3\)</span>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">01</span>
-          <span class="ex-step-label">\(C \rightarrow CO_2\) — Неметалл → Кислотный оксид</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(C + O_2 \rightarrow CO_2\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">Reacción de oxidación (combustión) del carbono.</p>
-        </div>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">02</span>
-          <span class="ex-step-label">\(CO_2 \rightarrow H_2CO_3\) — Кислотный оксид → Кислота</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(CO_2 + H_2O \rightarrow H_2CO_3\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">El óxido ácido interactúa con agua para formar su ácido correspondiente (ácido carbónico).</p>
-        </div>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">03</span>
-          <span class="ex-step-label">\(H_2CO_3 \rightarrow CaCO_3\) — Кислота → Соль</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(H_2CO_3 + Ca(OH)_2 \rightarrow CaCO_3\downarrow + 2H_2O\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">Reacción de neutralización. El ácido reacciona con hidróxido de calcio y forma carbonato de calcio (precipitado) y agua.</p>
-          <div class="note" style="margin-top:0.6rem;">También válido: \(H_2CO_3 + CaO \rightarrow CaCO_3\downarrow + H_2O\)</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Упражнение 2 -->
-  <section class="block ex">
-    <div class="block-header">
-      <span class="block-num">EX2</span>
-      <span class="block-title">Ряд алюминия — Амфотерный (Serie genética del aluminio)</span>
-    </div>
-    <div class="block-body">
-      <div class="chain" style="margin-bottom:1.25rem;flex-wrap:wrap;">
-        <span class="chain-item">\(Al\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(Al_2O_3\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(AlCl_3\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(Al(OH)_3\)</span>
-        <span class="chain-arrow">→</span>
-        <span class="chain-item">\(Na[Al(OH)_4]\)</span>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">01</span>
-          <span class="ex-step-label">\(Al \rightarrow Al_2O_3\) — Металл → Амфотерный оксид</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(4Al + 3O_2 \rightarrow 2Al_2O_3\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">Oxidación del metal para formar óxido de aluminio.</p>
-        </div>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">02</span>
-          <span class="ex-step-label">\(Al_2O_3 \rightarrow AlCl_3\) — Амфотерный оксид → Соль</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(Al_2O_3 + 6HCl \rightarrow 2AlCl_3 + 3H_2O\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">El óxido anfótero actúa como óxido básico al reaccionar con ácido clorhídrico para formar sal y agua.</p>
-        </div>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">03</span>
-          <span class="ex-step-label">\(AlCl_3 \rightarrow Al(OH)_3\) — Соль → Амфотерный гидроксид</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(AlCl_3 + 3NaOH \rightarrow Al(OH)_3\downarrow + 3NaCl\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">La sal reacciona con cantidad exacta de álcali formando el hidróxido insoluble como precipitado.</p>
-        </div>
-      </div>
-
-      <div class="ex-step">
-        <div class="ex-step-header">
-          <span class="ex-step-num">04</span>
-          <span class="ex-step-label">\(Al(OH)_3 \rightarrow Na[Al(OH)_4]\) — Амфотерный гидроксид → Комплексная соль</span>
-        </div>
-        <div class="ex-step-body">
-          <div class="eq-box">\(Al(OH)_3 + NaOH \rightarrow Na[Al(OH)_4]\)</div>
-          <p class="exp-label">Explicación:</p>
-          <p class="exp-text">Con exceso de álcali, el precipitado anfótero actúa como ácido y se disuelve formando tetrahidroxoaluminato de sodio (sal compleja).</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<hr class="chapter-divider">
-
-<!-- ══════════════════════════════════════════
-     CHAPTER 4: ОСНОВАНИЯ
-══════════════════════════════════════════ -->
-<div class="chapter" id="bases" style="--ch-accent:#c084fc;">
-  <div class="chapter-header">
-    <p class="chapter-tag" style="color:#c084fc;">🗺️ Схематическая карта · Глава 4</p>
-    <h1 class="chapter-title" style="color:#c084fc;">ОСНОВАНИЯ<br><span style="font-size:0.6em;color:#a855f7;">(ГИДРОКСИДЫ)</span></h1>
-    <p class="chapter-sub">ОСНОВАНИЯ — это сложные вещества, состоящие из ионов металлов и гидроксид-ионов (\(OH^-\)).</p>
-  </div>
-
-  <!-- 1. Состав и Формула -->
-  <section class="block" style="border-color:#222;">
-    <div class="block-header">
-      <span class="block-num" style="color:#c084fc;">01</span>
-      <span class="block-title">🔬 Состав и Формула</span>
-    </div>
-    <div class="block-body">
-      <ul>
-        <li><strong>Общая формула:</strong> \(M(OH)_n\)</li>
-        <li><strong>Диссоциация:</strong> В растворе образуют ионы \(OH^-\)<br>
-          Например: \(LiOH \rightarrow Li^+ + OH^-\)
-        </li>
-        <li><strong>Название:</strong> «гидроксид» + название элемента + (степень окисления)
-          <ul>
-            <li>Пример: \(Fe(OH)_3\) — гидроксид железа (III)</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 2. Классификация -->
-  <section class="block" style="border-color:#222;">
-    <div class="block-header">
-      <span class="block-num" style="color:#c084fc;">02</span>
-      <span class="block-title">📊 Классификация</span>
-    </div>
-    <div class="block-body">
-      <p style="color:#888;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;">А) По растворимости в воде</p>
-      <ul>
-        <li>💧 <strong>Растворимые (Щёлочи):</strong> Сильные и едкие.
-          <div class="pill-row">
-            <span class="pill" style="border-color:#c084fc;color:#c084fc;">LiOH</span>
-            <span class="pill" style="border-color:#c084fc;color:#c084fc;">NaOH</span>
-            <span class="pill" style="border-color:#c084fc;color:#c084fc;">KOH</span>
-            <span class="pill" style="border-color:#c084fc;color:#c084fc;">\(Ca(OH)_2\)</span>
-            <span class="pill" style="border-color:#c084fc;color:#c084fc;">\(Ba(OH)_2\)</span>
-          </div>
-        </li>
-        <li style="margin-top:0.75rem;">🧱 <strong>Нерастворимые:</strong>
-          <div class="pill-row">
-            <span class="pill">\(Cu(OH)_2\)</span>
-            <span class="pill">\(Mg(OH)_2\)</span>
-          </div>
-        </li>
-      </ul>
-      <p style="color:#888;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin:1.25rem 0 0.5rem;">Б) По количеству групп OH (Кислотность)</p>
-      <ul>
-        <li>1️⃣ <strong>Однокислотные:</strong> NaOH, LiOH</li>
-        <li>2️⃣ <strong>Двухкислотные:</strong> \(Ca(OH)_2\), \(Mg(OH)_2\)</li>
-        <li>3️⃣ <strong>Трёхкислотные:</strong> \(Fe(OH)_3\), \(Al(OH)_3\)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 3. Индикаторы -->
-  <section class="block" style="border-color:#222;">
-    <div class="block-header">
-      <span class="block-num" style="color:#c084fc;">03</span>
-      <span class="block-title">🌈 Индикаторы (pH &gt; 7)</span>
-    </div>
-    <div class="block-body">
-      <div class="ind-grid">
-        <div class="ind-card">
-          <p class="ind-label">🔵 Лакмус</p>
-          <p class="ind-value c-blue">СИНИЙ</p>
-        </div>
-        <div class="ind-card">
-          <p class="ind-label">💖 Фенолфталеин</p>
-          <p class="ind-value c-marin">МАЛИНОВЫЙ</p>
-        </div>
-        <div class="ind-card">
-          <p class="ind-label">🟡 Метилоранж</p>
-          <p class="ind-value c-yell">ЖЁЛТЫЙ</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Химические свойства -->
-  <section class="block" style="border-color:#222;">
-    <div class="block-header">
-      <span class="block-num" style="color:#c084fc;">04</span>
-      <span class="block-title">⚡ Химические свойства (Реакции)</span>
-    </div>
-    <div class="block-body">
-      <ul class="rx-list">
-        <li><span class="rx-num" style="color:#c084fc;">01</span><span>+ <strong>Кислота:</strong> → Соль + Вода (нейтрализация)<br>\(NaOH + HCl \rightarrow NaCl + H_2O\)</span></li>
-        <li><span class="rx-num" style="color:#c084fc;">02</span><span>+ <strong>Кислотный оксид:</strong> → Соль + Вода<br>\(NaOH + SO_3 \rightarrow Na_2SO_4 + H_2O\)</span></li>
-        <li><span class="rx-num" style="color:#c084fc;">03</span><span>+ <strong>Соль:</strong> → Новое основание + Новая соль (если выпадает осадок)</span></li>
-        <li><span class="rx-num" style="color:#c084fc;">04</span><span>🔥 <strong>Нагревание (\(t^\circ\)):</strong> Нерастворимые разлагаются на оксид и воду<br>\(Mg(OH)_2 \xrightarrow{t^\circ} MgO + H_2O\)</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 5. Применение и Опасность -->
-  <section class="block" style="border-color:#222;">
-    <div class="block-header">
-      <span class="block-num" style="color:#c084fc;">05</span>
-      <span class="block-title">🧪 Применение и Опасность</span>
-    </div>
-    <div class="block-body">
-      <ul>
-        <li><strong>NaOH</strong> (Едкий натр): производство мыла и бумаги.</li>
-        <li><strong>\(Ca(OH)_2\)</strong> (Гашеная известь): применяется в строительстве.</li>
-      </ul>
-      <div class="warn">⚠️ <strong>Внимание:</strong> Щёлочи очень едкие — разъедают кожу и ткани! Работать осторожно.</div>
-    </div>
-  </section>
-</div>
-
-<footer>Химия · Кислоты · Соли · Основания · Упражнения</footer>
-
 </body>
 </html>
